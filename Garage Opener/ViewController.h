@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UITextFieldDelegate>
+
+
+- (IBAction)buttonHit:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *ipTextField;
 
 @end
