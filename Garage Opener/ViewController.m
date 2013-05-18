@@ -8,22 +8,48 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
-
-@end
-
 @implementation ViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    [self.ipTextField setDelegate:self];
+    
+    [self.ipTextField setText:[[NSUserDefaults standardUserDefaults] objectForKey:@"lastURL"]];
+    
 }
 
-- (void)didReceiveMemoryWarning
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    [self buttonHit:nil];
+    
+    return YES;
+    
 }
+
+
+
+- (IBAction)buttonHit:(id)sender
+{
+    
+    NSString* textfieldvalue = self.ipTextField.text;
+    
+    [[NSUserDefaults standardUserDefaults] setValue:textfieldvalue forKey:@"lastURL"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSURL* myURL = [NSURL URLWithString:textfieldvalue];
+    
+    NSString* result = [NSString stringWithContentsOfURL:myURL encoding:NSASCIIStringEncoding error:nil];
+    
+    NSLog(@"result is %@",result);
+    
+    
+    [self.ipTextField resignFirstResponder];
+    
+}
+
 
 @end
