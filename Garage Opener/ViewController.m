@@ -26,13 +26,10 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     
-    [self buttonHit:nil];
-    
+    [self buttonHit:nil];    
     return YES;
     
 }
-
-
 
 
 
