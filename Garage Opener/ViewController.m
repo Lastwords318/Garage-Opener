@@ -19,6 +19,8 @@
     
     [self.ipTextField setText:[[NSUserDefaults standardUserDefaults] objectForKey:@"lastURL"]];
     
+    
+    
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -29,6 +31,8 @@
     return YES;
     
 }
+
+
 
 
 
@@ -45,6 +49,8 @@
     NSString* result = [NSString stringWithContentsOfURL:myURL encoding:NSASCIIStringEncoding error:nil];
     
     NSLog(@"result is %@",result);
+    
+    self.tempLabel.text = [NSString stringWithFormat:@"%@°F",result];
     
     
     [self.ipTextField resignFirstResponder];
