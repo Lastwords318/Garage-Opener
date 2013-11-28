@@ -14,5 +14,5 @@
 - (IBAction)buttonHit:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *ipTextField;
 @property (weak, nonatomic) IBOutlet UILabel *tempLabel;
-
 @end
+

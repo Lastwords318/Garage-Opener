@@ -17,7 +17,9 @@
 		BE22D6CD174739DF00AF1F46 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE22D6CC174739DF00AF1F46 /* Default@2x.png */; };
 		BE22D6CF174739DF00AF1F46 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE22D6CE174739DF00AF1F46 /* Default-568h@2x.png */; };
 		BE22D6D2174739DF00AF1F46 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE22D6D1174739DF00AF1F46 /* ViewController.m */; };
-		BE22D6D5174739DF00AF1F46 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE22D6D3174739DF00AF1F46 /* ViewController.xib */; };
+		BEEA9A6E18480651000C04E6 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEEA9A6C18480651000C04E6 /* ViewController.xib */; };
+		BEEA9A7218480B9F000C04E6 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEA9A7018480B9F000C04E6 /* SettingsViewController.m */; };
+		BEEA9A7318480B9F000C04E6 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEEA9A7118480B9F000C04E6 /* SettingsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +38,10 @@
 		BE22D6CE174739DF00AF1F46 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		BE22D6D0174739DF00AF1F46 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		BE22D6D1174739DF00AF1F46 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		BE22D6D4174739DF00AF1F46 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		BEEA9A6D18480651000C04E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		BEEA9A6F18480B9F000C04E6 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		BEEA9A7018480B9F000C04E6 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		BEEA9A7118480B9F000C04E6 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,8 +92,11 @@
 				BE22D6C8174739DF00AF1F46 /* AppDelegate.m */,
 				BE22D6D0174739DF00AF1F46 /* ViewController.h */,
 				BE22D6D1174739DF00AF1F46 /* ViewController.m */,
-				BE22D6D3174739DF00AF1F46 /* ViewController.xib */,
+				BEEA9A6C18480651000C04E6 /* ViewController.xib */,
 				BE22D6BF174739DF00AF1F46 /* Supporting Files */,
+				BEEA9A6F18480B9F000C04E6 /* SettingsViewController.h */,
+				BEEA9A7018480B9F000C04E6 /* SettingsViewController.m */,
+				BEEA9A7118480B9F000C04E6 /* SettingsViewController.xib */,
 			);
 			path = "Garage Opener";
 			sourceTree = "<group>";
@@ -158,11 +166,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEEA9A6E18480651000C04E6 /* ViewController.xib in Resources */,
+				BEEA9A7318480B9F000C04E6 /* SettingsViewController.xib in Resources */,
 				BE22D6C3174739DF00AF1F46 /* InfoPlist.strings in Resources */,
 				BE22D6CB174739DF00AF1F46 /* Default.png in Resources */,
 				BE22D6CD174739DF00AF1F46 /* Default@2x.png in Resources */,
 				BE22D6CF174739DF00AF1F46 /* Default-568h@2x.png in Resources */,
-				BE22D6D5174739DF00AF1F46 /* ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +185,7 @@
 				BE22D6C5174739DF00AF1F46 /* main.m in Sources */,
 				BE22D6C9174739DF00AF1F46 /* AppDelegate.m in Sources */,
 				BE22D6D2174739DF00AF1F46 /* ViewController.m in Sources */,
+				BEEA9A7218480B9F000C04E6 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,10 +200,10 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		BE22D6D3174739DF00AF1F46 /* ViewController.xib */ = {
+		BEEA9A6C18480651000C04E6 /* ViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				BE22D6D4174739DF00AF1F46 /* en */,
+				BEEA9A6D18480651000C04E6 /* en */,
 			);
 			name = ViewController.xib;
 			sourceTree = "<group>";
@@ -298,6 +308,7 @@
 				BE22D6DA174739DF00AF1F46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

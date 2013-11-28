@@ -7,6 +7,14 @@
 //
 
 #import "ViewController.h"
+#import "SettingsViewController.h"
+
+@interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *waitSpinner;
+
+@end
 
 @implementation ViewController
 
@@ -15,11 +23,30 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [self.ipTextField setDelegate:self];
+    self.navigationItem.title = @"Garage Door";
     
-    [self.ipTextField setText:[[NSUserDefaults standardUserDefaults] objectForKey:@"lastURL"]];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidBecomeActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+    
+    self.navigationItem.rightBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@"Settings"
+                                     style:UIBarButtonItemStylePlain
+                                    target:self
+                                    action:@selector(settings:)];
     
     
+}
+
+-(void)settings:(id)sender
+{
+    [self.navigationController pushViewController:[[SettingsViewController alloc] initWithNibName:nil bundle:nil] animated:YES];
+}
+
+-(void)applicationDidBecomeActive:(NSNotification*)notification
+{
+    [self statusButton:nil];
     
 }
 
@@ -31,28 +58,82 @@
     
 }
 
+-(NSURL*)URLWithSuffix:(NSString*)suffix
+{
+    
+    return [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"ipAddress"],suffix]];
+}
 
+- (IBAction)statusButton:(id)sender {
+    
+    NSURLRequest * request = [NSURLRequest requestWithURL:[self URLWithSuffix:@""]];
+    
+    [self.waitSpinner startAnimating];
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                        queue:[NSOperationQueue mainQueue]
+                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+     
+                                NSString* result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                
+                                [self.waitSpinner stopAnimating];
+                                
+                                if([result rangeOfString:@"Closed"].location != NSNotFound)
+                                {
+                                    self.tempLabel.text = @"Closed";
+                                }
+                                else
+                                {
+                                    self.tempLabel.text = @"Open";
+                                }
+                                
+                            }];
+    
+}
+
+- (IBAction)tempTapped:(id)sender {
+    
+    
+    NSURLRequest * request = [NSURLRequest requestWithURL:[self URLWithSuffix:@"Status"]];
+    [self.waitSpinner startAnimating];
+
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               
+                               [self.waitSpinner stopAnimating];
+                               
+                               
+                               NSString* result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                               
+                               self.tempLabel.text = [result stringByAppendingString:@"° F"];
+                               
+                               
+                               
+                               
+                           }];
+}
 
 - (IBAction)buttonHit:(id)sender
 {
     
-    NSString* textfieldvalue = self.ipTextField.text;
-    
-    [[NSUserDefaults standardUserDefaults] setValue:textfieldvalue forKey:@"lastURL"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    NSURL* myURL = [NSURL URLWithString:textfieldvalue];
-    
-    NSString* result = [NSString stringWithContentsOfURL:myURL encoding:NSASCIIStringEncoding error:nil];
-    
-    NSLog(@"result is %@",result);
-    
-    self.tempLabel.text = [NSString stringWithFormat:@"%@°F",result];
+    NSURLRequest * request = [NSURLRequest requestWithURL:[self URLWithSuffix:@"Garage"]];
+    [self.waitSpinner startAnimating];
     
     
-    [self.ipTextField resignFirstResponder];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               
+                               [self.waitSpinner stopAnimating];
+                               
+                            
+                               self.tempLabel.text = @"Clicked!";
+                               
+                               
+                           }];
+
     
 }
-
-
 @end
